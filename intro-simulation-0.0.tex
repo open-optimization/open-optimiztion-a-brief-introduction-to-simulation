@@ -1,0 +1,164 @@
+\documentclass[11pt]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Formula typesetting, packages, etc
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{xypic}
+\usepackage[bookmarks=false]{hyperref} % Better Bibtex url entries with hyperlinks.
+\usepackage[hyphenbreaks]{breakurl}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{epigraph}
+\usepackage[algoruled,vlined,linesnumberedhidden,norelsize]{algorithm2e} % For Algorithm boxes
+
+% \usepackage[cc]{titlepic}
+
+\usepackage{caption}
+\usepackage{marginnote}
+\usepackage[top=1in, bottom=1in, outer=1.2in, inner=1.2in, heightrounded, marginparwidth=1.5cm, marginparsep=0.5cm, includeheadfoot]{geometry}
+\usepackage{wrapfig}
+
+%% Footer
+\renewcommand\pagemark{\small \emph{A Brief Introduction to Simulation -- T.~Yusun and T.~Stephen} \hfill \thepage}
+
+\setlength{\parskip}{8pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{subcaption}
+
+%% Remove blank page before each chapter
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\scr@startchapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+% Declaration styles
+\newtheorem{mylemma}{Lemma}[chapter]
+\newtheorem{mytheorem}{Theorem}[chapter]
+\newtheorem{myconjecture}{Conjecture}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{myexample}{Example}[chapter]
+\newtheorem{mydefinition}{Definition}[chapter]
+
+% New commands
+\newcommand{\comb}[2]{{{#1} \choose {#2}}}
+\newcommand{\scr}[1]{\mathcal{#1}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\AC}{\psmat{A & 0 \cr 0 & C}}
+\newcommand{\ACp}{\pmat{A & 0 \cr 0 & C}}
+\newcommand{\zero}{\textbf 0}
+\newcommand{\vz}{\textbf z}
+\newcommand{\vb}{\textbf b}
+\newcommand{\vy}{\textbf y}
+\newcommand{\vx}{\textbf x}
+\newcommand{\vu}{\textbf u}
+\newcommand{\vv}{\textbf v}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\intr}{int}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\DeclareMathOperator{\diam}{diam}
+\newenvironment{psmallmatrix}
+  {\left(\begin{smallmatrix}}
+  {\end{smallmatrix}\right)}
+\newcommand{\mat}[1]{\begin{matrix} #1 \end{matrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\psmat}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+
+% For card suits
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\vardiamond}{\mathalpha}{extraup}{87}
+
+% For image credits
+\usepackage{xcolor}
+\usepackage[absolute,overlay]{textpos} %% Place text at a location.
+\newenvironment{imcredit}[2]{%
+  \begin{textblock*}{\textwidth}(#1,#2)
+      \tiny\bgroup\color{red!50!black}}{\egroup\end{textblock*}}
+
+%% FRONT MATTER
+\subject{\texttt{Open Optimization} Course Notes}
+\title{A Brief Introduction to Simulation}
+\subtitle{(Work in Progress)}
+\date{Version 0.0 (January 2020)}
+\author{\textbf{Timothy Yusun} \\ Department of Mathematical and Computational Sciences \\ University of Toronto Mississauga \and 
+\textbf{Tamon Stephen} \\ Department of Mathematics \\ Simon Fraser University}
+\publishers{ ~ \\ ~ \\ ~ \includegraphics[width=\linewidth]{front-matter/logo-open-optimization-oer-wide} \\ ~ \\
+Copyright 2020 by Timothy Yusun and Tamon Stephen. \\ ~ \\ This work is licenced under the Creative Commons Attribution-ShareAlike 4.0
+ (\href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}) license. \vspace{-3cm}}
+
+
+%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+\input{front-matter/front-matter.tex}
+\newpage
+\chapter*{Preface}
+\input{preface.tex}
+
+\newpage
+\tableofcontents
+
+
+\newpage
+
+\chapter{Randomness and Random Numbers}\label{sec1}
+\setlength{\epigraphwidth}{3in}
+\epigraph{The generation of random numbers is too important to be left to chance.}{Robert R. Coveyou \\ Oak Ridge National Laboratory, 1969.}
+
+\input{ch1_random_numbers}
+
+\newpage
+
+\chapter{Probability Distributions}\label{sec2}
+\setlength{\epigraphwidth}{3in}
+\epigraph{One sees... that the theory of probabilities is basically just common sense reduced to calculus.}{Pierre-Simon Laplace \\ \emph{Philosophical Essay on Probabilities}, 1814}
+
+\input{ch2_probability}
+
+
+\newpage
+
+\chapter{Basic Simulations in Excel}\label{sec3}
+\setlength{\epigraphwidth}{4in}
+\epigraph{I am rarely happier than when spending an entire day programming my computer to perform automatically a task that would otherwise take me a good ten seconds to do by hand.}{Douglas Adams \& Mark Carwardine \\ \emph{Last Chance to See}, 1990}
+
+\input{ch3_simulations}
+
+
+
+
+\newpage
+
+\chapter{An Introduction to Queueing Theory}\label{se:queueing}
+\setlength{\epigraphwidth}{4.25in}
+\epigraph{3.~There is no point in waiting at the end of the line. \\ 4.~If you don't wait at the end of the line, you'll never get to the front. }{Charles Wright\\ \emph{Wright's Axioms of Queueing Theory}}
+
+\input{ch4_queueing}
+
+
+
+
+%%% Bibliography
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+
+\end{document}
+
